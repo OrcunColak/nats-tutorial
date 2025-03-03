@@ -8,13 +8,14 @@ import java.nio.charset.StandardCharsets;
 import java.time.Duration;
 import java.util.List;
 
+// We are using PullSubscribeOptions
 public class JetStreamPullConsumer {
 
     public static void main() {
         String natsUrl = "nats://localhost:4222";
 
         try (Connection natsConnection = Nats.connect(natsUrl)) {
-            JetStream jetStream = natsConnection.jetStream();
+
 
             // Create a durable consumer
             ConsumerConfiguration consumerConfiguration = ConsumerConfiguration.builder()
@@ -28,6 +29,7 @@ public class JetStreamPullConsumer {
                     .build();
 
             // Subscribe to the stream
+            JetStream jetStream = natsConnection.jetStream();
             JetStreamSubscription jetStreamSubscription = jetStream.subscribe("orders.received", options);
             natsConnection.flush(Duration.ofSeconds(1));
 
