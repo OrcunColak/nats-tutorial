@@ -39,8 +39,8 @@ public class RequestReply {
 
             // Sleep to allow time for message processing
             Thread.sleep(2000);
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception exception) {
+            exception.printStackTrace();
         }
     }
 }
